@@ -1,0 +1,63 @@
+[project]
+name = "agentic-content-pipeline"
+version = "0.1.0"
+description = "Production-ready multi-agent content pipeline with LangGraph, FastAPI, and Redis semantic caching"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [{name = "Maanik Garg", email = "maanik.p.garg@gmail.com"}]
+keywords = ["langgraph", "ai-agents", "llm", "content-pipeline", "fastapi", "semantic-caching"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "langgraph>=0.2.60",
+    "langchain-core>=0.3.25",
+    "langchain-openai>=0.3.0",
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "redis>=5.2.0",
+    "numpy>=1.26.0",
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.6.0",
+    "sse-starlette>=2.1.0",
+    "structlog>=24.4.0",
+]
+
+[project.optional-dependencies]
+google = ["langchain-google-genai>=2.0.0"]
+anthropic = ["langchain-anthropic>=0.3.0"]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.13.0",
+    "httpx>=0.28.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pipeline"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
