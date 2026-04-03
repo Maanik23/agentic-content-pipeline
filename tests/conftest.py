@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 
 from pipeline.config import Settings
-from pipeline.graph.state import PipelineState, ReviewResult, Strategy
+from pipeline.graph.state import PipelineState, Strategy
 
 
 @pytest.fixture
