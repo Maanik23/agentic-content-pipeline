@@ -1,4 +1,4 @@
-"""Strategist agent — analyses brand context and produces a content strategy."""
+"""Strategist agent.analyses brand context and produces a content strategy."""
 
 from __future__ import annotations
 

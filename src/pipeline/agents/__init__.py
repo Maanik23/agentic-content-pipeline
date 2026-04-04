@@ -1,4 +1,4 @@
-"""Content pipeline agents — each is a LangGraph node factory."""
+"""Content pipeline agents.each is a LangGraph node factory."""
 
 from pipeline.agents.reviewer import create_reviewer
 from pipeline.agents.strategist import create_strategist

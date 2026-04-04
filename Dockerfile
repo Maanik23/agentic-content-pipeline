@@ -2,7 +2,8 @@ FROM python:3.12-slim AS base
 WORKDIR /app
 
 FROM base AS deps
-COPY pyproject.toml .
+COPY pyproject.toml README.md ./
+COPY src/ src/
 RUN pip install --no-cache-dir .
 
 FROM deps AS app

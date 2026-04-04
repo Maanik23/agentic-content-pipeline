@@ -19,7 +19,7 @@ async def lifespan(app: FastAPI):
 
 
 def create_app() -> FastAPI:
-    """Application factory — used by uvicorn and tests."""
+    """Application factory.used by uvicorn and tests."""
     app = FastAPI(
         title="Agentic Content Pipeline",
         description="Multi-agent content generation with LangGraph",

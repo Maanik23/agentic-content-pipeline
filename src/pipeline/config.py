@@ -8,7 +8,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     model_config = {"env_prefix": "PIPELINE_", "env_file": ".env"}
 
-    # LLM — provider and model are swappable without code changes
+    # LLM:provider and model are swappable without code changes
     llm_provider: str = "openai"
     llm_model: str = "gpt-4o"
     llm_temperature: float = 0.7

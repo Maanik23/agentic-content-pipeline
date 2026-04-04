@@ -1,4 +1,4 @@
-"""LLM provider factory — swap providers via config without touching agent code."""
+"""LLM provider factory.swap providers via config without touching agent code."""
 
 from __future__ import annotations
 

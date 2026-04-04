@@ -1,4 +1,4 @@
-"""API endpoints — sync generation and SSE streaming."""
+"""API endpoints.sync generation and SSE streaming."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Writer agent — generates content drafts based on the strategy."""
+"""Writer agent:generates content drafts based on the strategy."""
 
 from __future__ import annotations
 
@@ -35,7 +35,7 @@ def create_writer(llm: BaseChatModel):
         revision_context = ""
         if review and not review.approved:
             revision_context = (
-                f"REVISION REQUIRED — previous draft scored {review.score}/10.\n"
+                f"REVISION REQUIRED:previous draft scored {review.score}/10.\n"
                 f"Feedback: {review.feedback}\n"
                 f"Issues to fix: {', '.join(review.issues)}\n"
                 "Address every issue listed above."

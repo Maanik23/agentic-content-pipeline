@@ -2,7 +2,7 @@
 
 Instead of exact key matching, this cache computes cosine similarity between
 the query embedding and stored embeddings. A cached response is returned when
-similarity exceeds the configured threshold — saving LLM API calls and tokens
+similarity exceeds the configured threshold, saving LLM API calls and tokens
 for semantically equivalent inputs.
 """
 

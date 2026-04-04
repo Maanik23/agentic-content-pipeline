@@ -1,4 +1,4 @@
-"""LangGraph workflow — assembles agents into a stateful, compiled pipeline."""
+"""LangGraph workflow. Assembles agents into a stateful, compiled pipeline."""
 
 from __future__ import annotations
 
@@ -14,19 +14,22 @@ from pipeline.graph.state import PipelineState
 from pipeline.llm import get_llm
 
 
-def _route_after_review(state: PipelineState) -> str:
-    """Conditional edge: approve, revise, or force-accept on max revisions."""
-    review = state.get("review")
-    if review and review.approved:
-        return "approved"
-    max_rev = 3  # compile-time constant; runtime value set in Settings
-    if state.get("revision_count", 0) >= max_rev:
-        return "max_revisions"
-    return "revise"
+def _make_review_router(max_revisions: int = 3):
+    """Create a routing function that respects the configured max_revisions."""
+
+    def route(state: PipelineState) -> str:
+        review = state.get("review")
+        if review and review.approved:
+            return "approved"
+        if state.get("revision_count", 0) >= max_revisions:
+            return "max_revisions"
+        return "revise"
+
+    return route
 
 
 def _finalize(state: PipelineState) -> dict:
-    """Terminal node — marks content as published."""
+    """Terminal node. Marks content as published."""
     return {
         "final_content": state.get("final_content", state.get("draft", "")),
         "status": "published",
@@ -63,7 +66,7 @@ def create_pipeline(settings: Settings | None = None) -> CompiledStateGraph:
     graph.add_edge("writer", "reviewer")
     graph.add_conditional_edges(
         "reviewer",
-        _route_after_review,
+        _make_review_router(settings.max_revisions),
         {"approved": "finalize", "revise": "writer", "max_revisions": "finalize"},
     )
     graph.add_edge("finalize", END)

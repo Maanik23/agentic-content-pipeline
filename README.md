@@ -4,7 +4,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A production-ready multi-agent content pipeline built with **LangGraph**, **FastAPI**, and **Redis semantic caching**. Three specialized AI agents collaborate through a stateful graph to strategize, write, and review content: with automatic revision loops and optional human-in-the-loop approval.
+A multi-agent content pipeline built with **LangGraph**, **FastAPI**, and **Redis semantic caching**. Three specialized AI agents collaborate through a stateful graph to strategize, write, and review content: with automatic revision loops and optional human-in-the-loop approval.
 
 ## Architecture
 
@@ -32,7 +32,7 @@ graph TD
 
 | Agent | Role | Output |
 |---|---|---|
-| **Strategist** | Analyses brand context and topic to define audience, messaging, tone | `Strategy` (structured) |
+| **Strategist** | Analyzes brand context and topic to define audience, messaging, tone | `Strategy` (structured) |
 | **Writer** | Generates content matching the strategy; incorporates revision feedback | Raw content string |
 | **Reviewer** | Scores draft 1-10 on accuracy, tone, clarity; auto-approves above threshold | `ReviewResult` (structured) |
 
@@ -45,7 +45,7 @@ The reviewer → writer loop runs up to 3 times (configurable), then force-accep
 - **Human-in-the-Loop**: Optional interrupt gate using LangGraph checkpoints for human approval before publish
 - **SSE Streaming**: Real-time Server-Sent Events for pipeline progress
 - **Multi-Provider**: Swap between OpenAI, Google Gemini, and Anthropic via a single env var
-- **Production-Ready**: Docker Compose, GitHub Actions CI, structured types throughout
+- **Deployment**: Docker Compose, GitHub Actions CI, structured types throughout
 
 ## Quick Start
 
@@ -111,7 +111,7 @@ All settings are configurable via environment variables (prefix: `PIPELINE_`):
 |---|---|---|
 | `PIPELINE_LLM_PROVIDER` | `openai` | LLM provider (`openai` / `google` / `anthropic`) |
 | `PIPELINE_LLM_MODEL` | `gpt-4o` | Model identifier |
-| `PIPELINE_LLM_API_KEY` |: | API key for the chosen provider |
+| `PIPELINE_LLM_API_KEY` | *(required)* | API key for the chosen provider |
 | `PIPELINE_REDIS_URL` | `redis://localhost:6379/0` | Redis connection string |
 | `PIPELINE_CACHE_SIMILARITY_THRESHOLD` | `0.92` | Cosine similarity threshold for cache hits |
 | `PIPELINE_MAX_REVISIONS` | `3` | Maximum writer → reviewer revision loops |

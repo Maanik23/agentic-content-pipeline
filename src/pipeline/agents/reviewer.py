@@ -1,4 +1,4 @@
-"""Reviewer agent — evaluates content quality with structured scoring."""
+"""Reviewer agent.evaluates content quality with structured scoring."""
 
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ def create_reviewer(llm: BaseChatModel, score_threshold: float = 7.0):
             "draft": state["draft"],
         })
 
-        # Enforce threshold as a guardrail — LLM scores are suggestive, not authoritative
+        # Enforce threshold as a guardrail.LLM scores are suggestive, not authoritative
         result.approved = result.score >= score_threshold
 
         update: dict = {
