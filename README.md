@@ -4,7 +4,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A production-ready multi-agent content pipeline built with **LangGraph**, **FastAPI**, and **Redis semantic caching**. Three specialized AI agents collaborate through a stateful graph to strategize, write, and review content — with automatic revision loops and optional human-in-the-loop approval.
+A production-ready multi-agent content pipeline built with **LangGraph**, **FastAPI**, and **Redis semantic caching**. Three specialized AI agents collaborate through a stateful graph to strategize, write, and review content: with automatic revision loops and optional human-in-the-loop approval.
 
 ## Architecture
 
@@ -40,12 +40,12 @@ The reviewer → writer loop runs up to 3 times (configurable), then force-accep
 
 ## Features
 
-- **Multi-Agent Pipeline** — Strategist → Writer → Reviewer with automatic revision loop
-- **Semantic Caching** — Redis-backed cosine similarity cache that deduplicates LLM calls for equivalent queries
-- **Human-in-the-Loop** — Optional interrupt gate using LangGraph checkpoints for human approval before publish
-- **SSE Streaming** — Real-time Server-Sent Events for pipeline progress
-- **Multi-Provider** — Swap between OpenAI, Google Gemini, and Anthropic via a single env var
-- **Production-Ready** — Docker Compose, GitHub Actions CI, structured types throughout
+- **Multi-Agent Pipeline**: Strategist → Writer → Reviewer with automatic revision loop
+- **Semantic Caching**: Redis-backed cosine similarity cache that deduplicates LLM calls for equivalent queries
+- **Human-in-the-Loop**: Optional interrupt gate using LangGraph checkpoints for human approval before publish
+- **SSE Streaming**: Real-time Server-Sent Events for pipeline progress
+- **Multi-Provider**: Swap between OpenAI, Google Gemini, and Anthropic via a single env var
+- **Production-Ready**: Docker Compose, GitHub Actions CI, structured types throughout
 
 ## Quick Start
 
@@ -55,7 +55,7 @@ cd agentic-content-pipeline
 pip install -e ".[dev]"
 
 cp .env.example .env
-# Edit .env — add your LLM API key
+# Edit .env: add your LLM API key
 
 uvicorn pipeline.api.app:create_app --factory --reload
 ```
@@ -111,7 +111,7 @@ All settings are configurable via environment variables (prefix: `PIPELINE_`):
 |---|---|---|
 | `PIPELINE_LLM_PROVIDER` | `openai` | LLM provider (`openai` / `google` / `anthropic`) |
 | `PIPELINE_LLM_MODEL` | `gpt-4o` | Model identifier |
-| `PIPELINE_LLM_API_KEY` | — | API key for the chosen provider |
+| `PIPELINE_LLM_API_KEY` |: | API key for the chosen provider |
 | `PIPELINE_REDIS_URL` | `redis://localhost:6379/0` | Redis connection string |
 | `PIPELINE_CACHE_SIMILARITY_THRESHOLD` | `0.92` | Cosine similarity threshold for cache hits |
 | `PIPELINE_MAX_REVISIONS` | `3` | Maximum writer → reviewer revision loops |
@@ -133,10 +133,10 @@ mypy src/pipeline/ --ignore-missing-imports
 
 ## Tech Stack
 
-- **[LangGraph](https://github.com/langchain-ai/langgraph)** — Stateful agent orchestration as a compiled graph
-- **[FastAPI](https://fastapi.tiangolo.com/)** — Async API with SSE streaming
-- **[Redis](https://redis.io/)** — Semantic caching layer with embedding similarity
-- **[Pydantic v2](https://docs.pydantic.dev/)** — Structured LLM outputs and type-safe configuration
+- **[LangGraph](https://github.com/langchain-ai/langgraph)**: Stateful agent orchestration as a compiled graph
+- **[FastAPI](https://fastapi.tiangolo.com/)**: Async API with SSE streaming
+- **[Redis](https://redis.io/)**: Semantic caching layer with embedding similarity
+- **[Pydantic v2](https://docs.pydantic.dev/)**: Structured LLM outputs and type-safe configuration
 
 ## License
 
