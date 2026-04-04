@@ -29,7 +29,7 @@ class ReviewResult(BaseModel):
 class PipelineState(TypedDict, total=False):
     """Typed state flowing through the LangGraph pipeline.
 
-    LangGraph nodes return partial dicts — only the keys they update.
+    LangGraph nodes return partial dicts. Only the keys they update.
     ``total=False`` allows nodes to omit keys they don't touch.
     """
 
